@@ -41,7 +41,7 @@ class _ForumState extends State<Forum> {
       itemCount: items.length,
       itemBuilder: (context, index) {
         return new Container(
-          child: new newCard(news: items[index]),
+          child: new NewCard(news: items[index]),
           padding: EdgeInsets.fromLTRB(6, 4, 6, 10),
         );
       },

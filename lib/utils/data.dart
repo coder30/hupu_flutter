@@ -124,4 +124,70 @@ class DataUtils {
       print(e);
     }
   }
+
+  Future getLightCommentList({String tid = '0'}) async {
+    try {
+      final now = new DateTime.now();
+      final time = now.millisecondsSinceEpoch;
+      var query = {
+        'tid': tid,
+        'clientId': '83008540',
+        'advId': '9122E442-3C96-41E5-B5D3-EF9CD4EEE67C',
+        'fid': 4860,
+        'offline': 'json',
+        'order': 'asc',
+        '_ssid': 'REVTS1RPUC1KNjFGRDJWIDM4MzQ',
+        'night': 0,
+        'crt': time,
+        'client': '11A123C6-F88B-4599-825F-1CD606A4D7D8',
+        'time_zone': 'Asia/Shanghai',
+        'bddid': '70621959329',
+      };
+
+      var sign = _getSign(query);
+      query['sign'] = sign;
+
+      Response response = await Dio().get(
+        "http://bbs.mobileapi.hupu.com/3/7.3.33/threads/getsThreadLightReplyList", 
+        queryParameters: query
+      );
+      return response.data;
+    } catch (e) {
+      print(e);
+    }
+  }
+
+  Future getAllCommentList({String tid = '0', String page = '1'}) async {
+    try {
+      final now = new DateTime.now();
+      final time = now.millisecondsSinceEpoch;
+      var query = {
+        'page': page,
+        'tid': tid,
+        'clientId': '83008540',
+        'advId': '9122E442-3C96-41E5-B5D3-EF9CD4EEE67C',
+        'fid': 4860,
+        'bddid': '70621959329',
+        'offline': 'json',
+        'order': 'asc',
+        '_ssid': 'REVTS1RPUC1KNjFGRDJWIDM4MzQ',
+        'night': 0,
+        'crt': time,
+        'client': '11A123C6-F88B-4599-825F-1CD606A4D7D8',
+        'time_zone': 'Asia/Shanghai',
+        'sort': 0
+      };
+
+      var sign = _getSign(query);
+      query['sign'] = sign;
+
+      Response response = await Dio().get(
+        "http://bbs.mobileapi.hupu.com/3/7.3.33/threads/getsThreadPostList", 
+        queryParameters: query
+      );
+      return response.data;
+    } catch (e) {
+      print(e);
+    }
+  }
 }

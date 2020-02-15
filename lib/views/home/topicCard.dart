@@ -6,7 +6,6 @@ class TopCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(items);
     return Container(
       height: 200,
       child: ListView.builder(

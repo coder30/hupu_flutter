@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:hupu/views/home/commentList.dart';
 import 'package:url_launcher/url_launcher.dart';
 import '../../utils/data.dart';
 
@@ -25,7 +26,6 @@ class _NewsDetailState extends State<NewsDetail> {
 
   Future _getData() async{
     var result =  await dataUtils.getNewsDetail(id: widget.id);
-    print(result);
     var _title = result['title'];
     var _content = result['offline_data']['data']['content'];
     var index = _content.indexOf('来源');
@@ -35,8 +35,6 @@ class _NewsDetailState extends State<NewsDetail> {
     _content = _content.replaceAll("data-origin", "src");
     _content = _content.replaceAll("data-gif", "src");
 
-    print(title);
-    print(_content);
     setState(() {
       title= _title;
       content= _content;
@@ -45,10 +43,10 @@ class _NewsDetailState extends State<NewsDetail> {
 
   @override
   Widget build(BuildContext context) {
-    print(title);
     return Scaffold(
       appBar: AppBar(
         title: Text(title),
+        brightness: Brightness.light,
       ),
       body: ListView(
         children: <Widget>[
@@ -72,7 +70,8 @@ class _NewsDetailState extends State<NewsDetail> {
                 print(url);
               }
             },
-          )
+          ),
+          CommentList(id: widget.id)
         ]
       )
     );

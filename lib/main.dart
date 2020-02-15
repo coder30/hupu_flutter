@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import './views/home/home.dart';
@@ -7,13 +5,7 @@ import './views/forum/forum.dart';
 
 void main() {
   runApp(MyApp());
-  if(Platform.isAndroid){
-    SystemUiOverlayStyle style = SystemUiOverlayStyle(
-      statusBarColor: Colors.transparent,
-      statusBarIconBrightness: Brightness.dark
-    );
-    SystemChrome.setSystemUIOverlayStyle(style);
-  }
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.dark);
 }
 
 class MyApp extends StatelessWidget {
@@ -58,9 +50,6 @@ class _MyStatefulWidgetState extends State<MyStatefulWidget> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   title: const Text('Driball'),
-      // ),
       body: Container(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
